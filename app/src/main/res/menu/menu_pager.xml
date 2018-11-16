@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.andry.vocabulary.WordPagerActivity">
+
+    <item
+        android:id="@+id/pager_action_search"
+        android:title="@string/action_search"
+        android:icon="@drawable/ic_action_search"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView"/>
+
+<!--    <item android:id="@+id/pager_action_check"
+        android:title="@string/check_func"
+        android:icon="@drawable/ic_check"
+        app:showAsAction="ifRoom|collapseActionView"/>
+
+    <item android:id="@+id/pager_action_move"
+        android:title="@string/move_func"
+        android:icon="@drawable/ic_move"
+        android:visible="false"
+        app:showAsAction="ifRoom|collapseActionView"/>-->
+</menu>
