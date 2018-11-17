@@ -1,11 +1,13 @@
 <resources>
-    <string name="app_name">Vocabulary</string>
+    <string name="app_name">LangNote</string>
     <string name="tab_text_remember">to learn</string>
     <string name="tab_text_remembered">learned</string>
     <string name="error_message">Something went wrong, please send report to email</string>
-    <string name="pager_toolbar_title">%ss</string>
+    <string name="pager_toolbar_title">%ss P%d</string>
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_ok">OK</string>
     <string name="noun">Noun</string>
     <string name="verb">Verb</string>
     <string name="adjective">Adjective</string>
@@ -13,10 +15,11 @@
     <string name="other">Other</string>
     <string name="new_pair">New pair</string>
     <string name="edit_pair">Edit pair</string>
-    <string name="enter_native_word">Enter native word</string>
-    <string name="enter_foreign_word">Enter foreign word</string>
+    <string name="enter_native_word">Enter translation</string>
+    <string name="enter_foreign_word">Enter a word</string>
     <string name="list_is_empty">%s list is empty</string>
     <string name="word_item">%1$s - %2$s</string>
+    <string name="word_item_2">%1$s - %2$s, %3$s</string>
     <string name="date_item">%1$s</string>
     <string name="what_to_do">What to do?</string>
     <string name="select_func">Select</string>
@@ -34,4 +37,7 @@
     <string name="pair_deleted">The pair deleted</string>
     <string name="pair_edited">The pair edited</string>
     <string name="pair_moved">The pair moved</string>
+    <string name="main_ad_id">ca-app-pub-5872947580733077/7871515385</string>
+    <string name="test_ad_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="app_ad_id">ca-app-pub-5872947580733077~3947338975</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.example.andry.vocabulary;
 
-import android.content.pm.ActivityInfo;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +28,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        MobileAds.initialize(this, getString(R.string.app_ad_id));
+
+        AdView adView = findViewById(R.id.main_ad);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
         List<MainTab> mainTabs = new ArrayList<>();
         mainTabs.add(LearnTab.newInstance());
@@ -34,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mTabsPagerAdapter);
+
 
         TabLayout tabLayout = findViewById(R.id.tabs);
 

@@ -66,6 +66,7 @@ public class WordLab {
         ContentValues values = new ContentValues();
         values.put(WordTable.Cols.UUID, word.getId().toString());
         values.put(WordTable.Cols.NATIVE_WORD, word.getNativeWord());
+        values.put(WordTable.Cols.NATIVE_WORD_2, word.getNativeWord2());
         values.put(WordTable.Cols.FOREIGN_WORD, word.getForeignWord());
         values.put(WordTable.Cols.PART_OF_SPEECH, word.getPartOfSpeech().toString());
         values.put(WordTable.Cols.REMEMBERED, word.isRemembered() ? "1" : "0");

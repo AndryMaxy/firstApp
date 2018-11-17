@@ -121,8 +121,6 @@ public abstract class MainTab extends Fragment implements View.OnClickListener {
 
     private void startActivity(PartOfSpeech partOfSpeech, boolean isRemembered){
         if (WordLab.getWordLab(getActivity()).getWords(partOfSpeech, isRemembered).size() != 0) {
-            //ArrayList<Word> wordArrayList = WordLab.getWordLab(getActivity()).getWords(partOfSpeech, mIsRemembered);
-            //Intent intent = WordPagerActivity.newInstance(getActivity(), wordArrayList);
             Intent intent = WordPagerActivity.newInstance(getActivity(), partOfSpeech, isRemembered);
             startActivity(intent);
         } else Toast.makeText(getActivity(), getString(R.string.list_is_empty, PartOfSpeech.format(partOfSpeech)), Toast.LENGTH_SHORT).show();

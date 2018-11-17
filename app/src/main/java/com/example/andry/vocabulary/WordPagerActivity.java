@@ -2,7 +2,6 @@ package com.example.andry.vocabulary;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,10 +24,9 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WordPagerActivity extends AppCompatActivity implements Callbacks, OnUpdateListener{
+public class WordPagerActivity extends AppCompatActivity implements OnUpdateListener{
 
     private static final String TAG = "WordPagerActivity";
-    private static final String EXTRA_WORD_LIST = "com.example.andry.vocabulary.word_pager_activity.word_list";
     private static final String EXTRA_PART_OF_SPEECH = "com.example.andry.vocabulary.word_pager_activity.part_of_speech";
     private static final String EXTRA_IS_REMEMBERED = "com.example.andry.vocabulary.word_pager_activity.is_remembered";
     private ViewPager mViewPager;
@@ -42,7 +40,6 @@ public class WordPagerActivity extends AppCompatActivity implements Callbacks, O
 
     public static Intent newInstance(Context context, PartOfSpeech partOfSpeech, boolean isRemembered) {
         Intent intent = new Intent(context, WordPagerActivity.class);
-        //intent.putParcelableArrayListExtra(EXTRA_WORD_LIST, words);
         intent.putExtra(EXTRA_PART_OF_SPEECH, partOfSpeech.toString());
         intent.putExtra(EXTRA_IS_REMEMBERED, isRemembered);
         return intent;
@@ -54,7 +51,6 @@ public class WordPagerActivity extends AppCompatActivity implements Callbacks, O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_pager);
 
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         mConstraintLayout = findViewById(R.id.fragment_container);
 
@@ -64,9 +60,8 @@ public class WordPagerActivity extends AppCompatActivity implements Callbacks, O
         mViewPager = findViewById(R.id.list_view_pager);
 
         mPartOfSpeech =  PartOfSpeech.valueOf((String)getIntent().getSerializableExtra(EXTRA_PART_OF_SPEECH));
-        getSupportActionBar().setTitle(getResources().getString(R.string.pager_toolbar_title, mPartOfSpeech));
+        getSupportActionBar().setTitle(getResources().getString(R.string.pager_toolbar_title, mPartOfSpeech, 1));
         mIsRemembered = (boolean) getIntent().getSerializableExtra(EXTRA_IS_REMEMBERED);
-        //mWordList = getIntent().getParcelableArrayListExtra(EXTRA_WORD_LIST);
         mWordList = WordLab.getWordLab(getApplicationContext()).getWords(mPartOfSpeech, mIsRemembered);
 
         if (MyPreferences.getItemsCount(this) == 0) {
@@ -83,20 +78,15 @@ public class WordPagerActivity extends AppCompatActivity implements Callbacks, O
         } else {
             setAdapter(mWordList);
         }
-    }
 
- /*   @Override
-    public void updateUI() {
-        for (int i = 0; i < mAdapter.getPagesCount(); i++) {
-            WordListFragment fragment = (WordListFragment) mAdapter.getItem(i);
-            fragment.updateUI();
-        }
-        mWordList = WordLab.getWordLab(this).getWords(mPartOfSpeech, mIsRemembered);
-        if (mAdapter.removeLastPage()) {
-            mAdapter.notifyDataSetChanged();
-            mViewPager.setCurrentItem(mAdapter.getPagesCount() - 1);
-        }
-    }*/
+        mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int position) {
+                getSupportActionBar().setTitle(getResources().getString(R.string.pager_toolbar_title, mPartOfSpeech, position + 1));
+            }
+        });
+    }
 
     @Override
     public void updateUI() {
@@ -115,30 +105,11 @@ public class WordPagerActivity extends AppCompatActivity implements Callbacks, O
         mViewPager.setAdapter(mAdapter);
     }
 
-    @Override
-    public void callSearch(ArrayList<Word> words) {
- /*       for (int i = 0; i < mAdapter.getPagesCount(); i++) {
-            Log.i(TAG, "fragment0: " + mAdapter.getItem(i).getId());
-        }
-        for (Fragment f : getSupportFragmentManager().getFragments()) {
-           // getSupportFragmentManager().beginTransaction().remove(f).commit();
-            Log.i(TAG, "fragment: " + f.getId());
-        }
-        SearchListFragment fragment = (SearchListFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_list_word);
-        if (fragment == null) {
-            fragment = SearchListFragment.newInstance(words);
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_list_word, fragment).commit();
-            mViewPager.setAdapter(new SearchViewPagerAdapter(getSupportFragmentManager(), fragment));
-        } else {
-            fragment.updateUI(words);
-        }*/
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_pager, menu);
 
-     //   Log.i(TAG, "menu activity");
         MenuItem searchItem = menu.findItem(R.id.pager_action_search);
         SearchView searchView = (SearchView)searchItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -266,53 +237,14 @@ public class WordPagerActivity extends AppCompatActivity implements Callbacks, O
             return (int) Math.ceil((double) mLocalWordList.size() / mWordsOnPage);
         }
 
-        private int getPagesCount(){
-            return mWordListFragment.size();
-        }
-
         private ArrayList<Word> getWordList() {
             ArrayList<Word> mLocalWords = new ArrayList<>();
             int range = (mWordsOnPage + mLastIndex) < mLocalWordList.size() ? (mWordsOnPage + mLastIndex) : mLocalWordList.size();
-/*            Log.i(TAG, "id: " + mLastIndex
-                    + "rang: " + range
-                    + " listSize: " + mLocalWordList.size());*/
             for (int i = mLastIndex; i < range; i++) {
                 mLocalWords.add(mLocalWordList.get(i));
             }
             mLastIndex += mWordsOnPage;
             return mLocalWords;
         }
-
-/*
-
-        @Override
-        public int getItemPosition(Object object) {
-            int index = mWordListFragment.indexOf(object);
-            if (index == -1)
-                return POSITION_NONE;
-            else
-                return index;
-        }
-
-        private boolean removeLastPage() {
-            Log.i(TAG, "remove");
-            if (((mLocalWordList.size() * 1.0 / mWordsOnPage)) <= (getPagesCount() - 1)) {
-                Log.i(TAG, "size" + mLocalWordList.size());
-                int lastFragmentPosition = mWordListFragment.size() - 1;
-                mAdapter.destroyItem(mViewPager, lastFragmentPosition, mWordListFragment.get(lastFragmentPosition));
-                mWordListFragment.remove(lastFragmentPosition);
-                mCountItems -= 1;
-                return true;
-            }
-            return false;
-        }
-*/
-
-        /*   @Nullable
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return getString(R.string.pager_toolbar_title, mPartOfSpeech.toString()) + " p" + position;
-        }*/
-
     }
 }

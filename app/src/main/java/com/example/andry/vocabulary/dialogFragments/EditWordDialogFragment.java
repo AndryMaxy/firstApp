@@ -12,15 +12,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.andry.vocabulary.OnUpdateListener;
+import com.example.andry.vocabulary.PartOfSpeech;
 import com.example.andry.vocabulary.R;
 import com.example.andry.vocabulary.Word;
 import com.example.andry.vocabulary.WordLab;
 import com.example.andry.vocabulary.WordListFragment;
 
-public class EditWordDialogFragment extends DialogFragment {
+public class EditWordDialogFragment extends DialogFragment implements View.OnClickListener {
+
+    private View mRootView;
+    private EditText mEditNative;
+    private EditText mEditNative2;
+    private EditText mEditForeign;
+    private PartOfSpeech mPartOfSpeech;
+    private ImageView mAddTranslation;
+    private ImageView mRemoveAddedTranslation;
+    private boolean isAddActivated;
 
     private OnUpdateListener mOnUpdateListener;
 
@@ -34,21 +45,35 @@ public class EditWordDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_fragment_new_word, null);
+        mRootView = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_fragment_new_word, null);
 
         final Word word = getArguments().getParcelable(WordListFragment.ARG_WORD);
 
-        final EditText mEditNative = view.findViewById(R.id.editNative);
-        final EditText mEditForeign = view.findViewById(R.id.editForeign);
+        mEditNative = mRootView.findViewById(R.id.editNative);
+        mEditForeign = mRootView.findViewById(R.id.editForeign);
 
         mEditNative.setText(word.getNativeWord());
         mEditForeign.setText(word.getForeignWord());
 
+        mAddTranslation = mRootView.findViewById(R.id.addTranslation);
+        mAddTranslation.setOnClickListener(this);
+        if (word.getNativeWord2() != null) {
+            isAddActivated = true;
+            mAddTranslation.setVisibility(View.INVISIBLE);
+            mEditNative2 = mRootView.findViewById(R.id.editNative2);
+            mEditNative2.setVisibility(View.VISIBLE);
+            mEditNative2.setText(word.getNativeWord2());
+
+            mRemoveAddedTranslation = mRootView.findViewById(R.id.removeAddedTranslation);
+            mRemoveAddedTranslation.setVisibility(View.VISIBLE);
+            mRemoveAddedTranslation.setOnClickListener(this);
+
+        }
         final AlertDialog alertDialog =  new AlertDialog.Builder(getActivity())
-                .setView(view)
+                .setView(mRootView)
                 .setTitle(R.string.edit_pair)
-                .setPositiveButton(android.R.string.ok, null)
-                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(R.string.dialog_ok, null)
+                .setNegativeButton(R.string.dialog_cancel, null)
                 .create();
 
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -59,15 +84,32 @@ public class EditWordDialogFragment extends DialogFragment {
                 okBt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (!mEditNative.getText().toString().equals("") && !mEditNative.getText().toString().equals("")){
-                            word.setNativeWord(mEditNative.getText().toString());
-                            word.setForeignWord(mEditForeign.getText().toString());
-                            WordLab.getWordLab(getActivity()).updateWord(word);
-                            mOnUpdateListener.updateUI();
-                            dialog.cancel();
-                            Toast.makeText(getActivity(), R.string.edit_pair, Toast.LENGTH_SHORT).show();
+                        if (isAddActivated && mEditNative2 != null) {
+                            if (!mEditNative.getText().toString().equals("") && !mEditForeign.getText().toString().equals("") && !mEditNative2.getText().toString().equals("")) {
+                                //test();
+                                word.setNativeWord(mEditNative.getText().toString());
+                                word.setNativeWord2(mEditNative2.getText().toString());
+                                word.setForeignWord(mEditForeign.getText().toString());
+                                WordLab.getWordLab(getActivity()).addWord(word);
+                                dialog.cancel();
+                                mOnUpdateListener.updateUI();
+                                showToast(R.string.pair_edited);
+                            } else {
+                                showToast(R.string.fill_all_fields);
+                            }
                         } else {
-                            Toast.makeText(getActivity(), R.string.fill_all_fields, Toast.LENGTH_SHORT).show();
+                            if (!mEditNative.getText().toString().equals("") && !mEditForeign.getText().toString().equals("")) {
+                                //test();
+                                word.setNativeWord(mEditNative.getText().toString());
+                                word.setNativeWord2(null);
+                                word.setForeignWord(mEditForeign.getText().toString());
+                                WordLab.getWordLab(getActivity()).addWord(word);
+                                dialog.cancel();
+                                mOnUpdateListener.updateUI();
+                                showToast(R.string.pair_edited);
+                            } else {
+                                showToast(R.string.fill_all_fields);
+                            }
                         }
                     }
                 });
@@ -75,6 +117,31 @@ public class EditWordDialogFragment extends DialogFragment {
         });
 
         return alertDialog;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.addTranslation:
+                mAddTranslation.setVisibility(View.INVISIBLE);
+                mRemoveAddedTranslation = mRootView.findViewById(R.id.removeAddedTranslation);
+                mRemoveAddedTranslation.setVisibility(View.VISIBLE);
+                mRemoveAddedTranslation.setOnClickListener(this);
+                mEditNative2 = mRootView.findViewById(R.id.editNative2);
+                mEditNative2.setVisibility(View.VISIBLE);
+                isAddActivated = true;
+                break;
+            case R.id.removeAddedTranslation:
+                mRemoveAddedTranslation.setVisibility(View.GONE);
+                mEditNative2.setVisibility(View.GONE);
+                mAddTranslation.setVisibility(View.VISIBLE);
+                isAddActivated = false;
+                break;
+        }
+    }
+
+    private void showToast(int resId) {
+        Toast.makeText(getActivity(), resId, Toast.LENGTH_SHORT).show();
     }
 
     @Override

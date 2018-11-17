@@ -20,6 +20,7 @@ public class WordDBHelper extends SQLiteOpenHelper {
                 " _id integer primary key autoincrement, " +
                 WordTable.Cols.UUID + ", " +
                 WordTable.Cols.NATIVE_WORD + ", " +
+                WordTable.Cols.NATIVE_WORD_2 + ", " +
                 WordTable.Cols.FOREIGN_WORD + ", " +
                 WordTable.Cols.PART_OF_SPEECH + ", " +
                 WordTable.Cols.REMEMBERED + ", " +

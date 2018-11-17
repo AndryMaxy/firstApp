@@ -12,6 +12,7 @@ public class Word implements Parcelable {
 
     private UUID mId;
     private String mNativeWord;
+    private String mNativeWord2;
     private String mForeignWord;
     private PartOfSpeech mPartOfSpeech;
     private boolean isRemembered;
@@ -22,11 +23,7 @@ public class Word implements Parcelable {
         mDate = new Date();
     }
 
- /*   public Word() {
-        this(UUID.randomUUID());
-    }*/
-
-    public Word(String nativeWord, String foreignWord, PartOfSpeech partOfSpeech) {
+    public Word(String foreignWord, String nativeWord, PartOfSpeech partOfSpeech) {
         mId = UUID.randomUUID();
         mNativeWord = nativeWord;
         mForeignWord = foreignWord;
@@ -54,6 +51,14 @@ public class Word implements Parcelable {
 
     public void setNativeWord(String nativeWord) {
         mNativeWord = nativeWord;
+    }
+
+    public String getNativeWord2() {
+        return mNativeWord2;
+    }
+
+    public void setNativeWord2(String nativeWord2) {
+        mNativeWord2 = nativeWord2;
     }
 
     public String getForeignWord() {

@@ -18,6 +18,7 @@ public class WordCursorWrapper extends CursorWrapper {
     public Word getWord(){
         String uuid = getString(getColumnIndex(WordDatabase.WordTable.Cols.UUID));
         String nativeWord = getString(getColumnIndex(WordDatabase.WordTable.Cols.NATIVE_WORD));
+        String nativeWord2 = getString(getColumnIndex(WordDatabase.WordTable.Cols.NATIVE_WORD_2));
         String foreignWord = getString(getColumnIndex(WordDatabase.WordTable.Cols.FOREIGN_WORD));
         String part_of_speech = getString(getColumnIndex(WordDatabase.WordTable.Cols.PART_OF_SPEECH));
         boolean isRemembered = getInt(getColumnIndex(WordDatabase.WordTable.Cols.REMEMBERED)) == 1;
@@ -25,6 +26,7 @@ public class WordCursorWrapper extends CursorWrapper {
 
         Word word = new Word(UUID.fromString(uuid));
         word.setNativeWord(nativeWord);
+        word.setNativeWord2(nativeWord2);
         word.setForeignWord(foreignWord);
         word.setPartOfSpeech(PartOfSpeech.valueOf(part_of_speech));
         word.setRemembered(isRemembered);
