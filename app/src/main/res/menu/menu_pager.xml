@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.andry.vocabulary.WordPagerActivity">
+    tools:context="com.example.andry.www.com.andrydelops.proglang.WordPagerActivity">
 
     <item
         android:id="@+id/pager_action_search"

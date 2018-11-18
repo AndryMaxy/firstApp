@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
     <color name="colorPrimary2">#1866b9</color>
-    <color name="colorPrimaryDark">#00574b</color>
     <color name="colorPrimaryDark2">#1a529b</color>
     <color name="colorAccent">#1bbfd8</color>
     <color name="editWordDialog">#323b3c</color>
-    <color name="bgEndColor">#00574b</color>
-    <color name="bgCenterColor">#008577</color>
-    <color name="bgStartColor">#00a190</color>
     <color name="bg2StartColor">#2fa1cc</color>
     <color name="bg2CenterColor">#2a77c7</color>
     <color name="bg2EndColor">#1a529b</color>

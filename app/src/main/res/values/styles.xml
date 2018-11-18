@@ -8,10 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AddWordButton" parent="@style/Widget.MaterialComponents.Button.UnelevatedButton" >
-        <item name="android:background">@drawable/button_add_word</item>
-    </style>
-
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

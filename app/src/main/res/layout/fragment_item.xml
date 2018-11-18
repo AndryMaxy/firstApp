@@ -3,11 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_item"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@drawable/check_item_selector"
-    android:layout_height="@dimen/fragment_item_layout_height">
+    android:layout_height="40dp">
 
     <TextView
         android:id="@+id/word_item"
