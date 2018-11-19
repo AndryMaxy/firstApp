@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 
-import com.example.andry.www.R;
+import com.andrydevelops.langnote.R;
 
 
 public abstract class SureDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {

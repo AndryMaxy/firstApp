@@ -10,7 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 
-import com.example.andry.www.R;
+import com.andrydevelops.langnote.R;
 import com.andrydevelops.langnote.Word;
 import com.andrydevelops.langnote.WordListFragment;
 import com.andrydevelops.langnote.dialogFragments.suredialogs.SureDeletePair;

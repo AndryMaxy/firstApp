@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import com.andrydevelops.langnote.MainTab;
 import com.andrydevelops.langnote.PartOfSpeech;
-import com.example.andry.www.R;
+import com.andrydevelops.langnote.R;
 import com.andrydevelops.langnote.Word;
 import com.andrydevelops.langnote.WordLab;
 

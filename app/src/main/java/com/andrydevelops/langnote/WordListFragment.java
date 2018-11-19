@@ -14,7 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.andrydevelops.langnote.dialogFragments.FunctionSelectorDialogFragment;
-import com.example.andry.www.R;
 
 import java.util.ArrayList;
 import java.util.List;

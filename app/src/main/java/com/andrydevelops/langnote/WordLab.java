@@ -6,7 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.andrydevelops.langnote.database.*;
+import com.andrydevelops.langnote.database.WordCursorWrapper;
+import com.andrydevelops.langnote.database.WordDBHelper;
 import com.andrydevelops.langnote.database.WordDatabase.WordTable;
 
 import java.util.ArrayList;

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 
 import com.andrydevelops.langnote.dialogFragments.NewWordDialogFragment;
-import com.example.andry.www.R;
 
 import java.util.Objects;
 

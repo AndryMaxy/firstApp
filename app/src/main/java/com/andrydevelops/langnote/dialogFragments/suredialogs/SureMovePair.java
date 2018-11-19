@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.widget.Toast;
 
 import com.andrydevelops.langnote.OnUpdateListener;
-import com.example.andry.www.R;
+import com.andrydevelops.langnote.R;
 import com.andrydevelops.langnote.Word;
 import com.andrydevelops.langnote.WordLab;
 import com.andrydevelops.langnote.WordListFragment;

@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.andrydevelops.langnote.LearnTab;
 import com.andrydevelops.langnote.PartOfSpeech;
-import com.example.andry.www.R;
+import com.andrydevelops.langnote.R;
 import com.andrydevelops.langnote.Word;
 import com.andrydevelops.langnote.WordLab;
 
@@ -61,7 +61,7 @@ public class NewWordDialogFragment extends DialogFragment implements View.OnClic
                     public void onClick(View v) {
                         if (isAddActivated && mEditNative2 != null) {
                             if (!mEditNative.getText().toString().equals("") && !mEditForeign.getText().toString().equals("") && !mEditNative2.getText().toString().equals("")) {
-                                Word word = new Word(mEditNative.getText().toString(), mEditForeign.getText().toString(), mPartOfSpeech);
+                                Word word = new Word(mEditForeign.getText().toString(), mEditNative.getText().toString(), mPartOfSpeech);
                                 //test();
                                 word.setNativeWord2(mEditNative2.getText().toString());
                                 WordLab.getWordLab(getActivity()).addWord(word);
@@ -72,7 +72,7 @@ public class NewWordDialogFragment extends DialogFragment implements View.OnClic
                             }
                         } else {
                             if (!mEditNative.getText().toString().equals("") && !mEditForeign.getText().toString().equals("")) {
-                                Word word = new Word(mEditNative.getText().toString(), mEditForeign.getText().toString(), mPartOfSpeech);
+                                Word word = new Word(mEditForeign.getText().toString(), mEditNative.getText().toString(), mPartOfSpeech);
                                // test();
                                 WordLab.getWordLab(getActivity()).addWord(word);
                                 dialog.cancel();

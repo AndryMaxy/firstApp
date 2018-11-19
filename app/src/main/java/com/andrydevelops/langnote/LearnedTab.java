@@ -5,7 +5,6 @@ import android.widget.Toast;
 
 import com.andrydevelops.langnote.dialogFragments.suredialogs.SureClearList;
 import com.andrydevelops.langnote.dialogFragments.suredialogs.SureDialogFragment;
-import com.example.andry.www.R;
 
 public class LearnedTab extends MainTab {
 

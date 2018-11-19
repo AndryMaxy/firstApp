@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.andry.www.R;
-
 public abstract class MainTab extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "MainTab";

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.andry.www">
+    package="com.andrydevelops.langnote">
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,7 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/app_ad_id"/>
         <activity
-            android:name="com.andrydevelops.langnote.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:label="@string/app_name">
             <intent-filter>
@@ -23,9 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.andrydevelops.langnote.WordPagerActivity"
+        <activity android:name=".WordPagerActivity"
             android:screenOrientation="portrait"
-            android:parentActivityName="com.andrydevelops.langnote.MainActivity">
+            android:parentActivityName=".MainActivity">
         </activity>
     </application>
 
