@@ -90,7 +90,7 @@ public class EditWordDialogFragment extends DialogFragment implements View.OnCli
                                 word.setNativeWord(mEditNative.getText().toString());
                                 word.setNativeWord2(mEditNative2.getText().toString());
                                 word.setForeignWord(mEditForeign.getText().toString());
-                                WordLab.getWordLab(getActivity()).addWord(word);
+                                WordLab.getWordLab(getActivity()).updateWord(word);
                                 dialog.cancel();
                                 mOnUpdateListener.updateUI();
                                 showToast(R.string.pair_edited);
@@ -103,7 +103,7 @@ public class EditWordDialogFragment extends DialogFragment implements View.OnCli
                                 word.setNativeWord(mEditNative.getText().toString());
                                 word.setNativeWord2(null);
                                 word.setForeignWord(mEditForeign.getText().toString());
-                                WordLab.getWordLab(getActivity()).addWord(word);
+                                WordLab.getWordLab(getActivity()).updateWord(word);
                                 dialog.cancel();
                                 mOnUpdateListener.updateUI();
                                 showToast(R.string.pair_edited);
